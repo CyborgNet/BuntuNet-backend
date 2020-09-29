@@ -11,7 +11,6 @@ import (
 var router *gin.Engine
 
 func main() {
-	// main
 	gin.SetMode(gin.ReleaseMode)
 	router = gin.Default()
 	router.Use(static.Serve("/assets/css", static.LocalFile("./templates/assets/css", true)))
