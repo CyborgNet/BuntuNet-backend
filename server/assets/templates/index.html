@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>{{ .title }}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
+    <link rel="stylesheet" href="assets/css/styles.min.css">
+</head>
+
+<body>
+    <nav class="header">
+        <div class="hd_container">
+            <a class="logo" href="home">
+                <p>
+                    <span>Buntu</span>Net
+                </p>
+            </a>
+            
+            <a href="javascript:void(0);" class="icon" onclick="slidemenu()">
+                <i class="fa fa-bars"></i>
+            </a>
+
+            <div class="menu" id="menuId">
+                {{ if not .is_logged_in }}
+                <a href="signup">Sign up</a>
+                <a href="signin">Sign in</a>
+                {{ end }}
+                {{ if .is_logged_in }}
+                <a href="news">Go Panel</a>
+                {{ end }}
+                <a href="https://t.me/buntunet">Contact</a> 
+                <a href="baas">BaaS</a>
+            </div>
+            
+            <script>
+                function slidemenu() {
+                  var x = document.getElementById("menuId");
+                  if (x.className === "menu") {
+                    x.className += " responsive";
+                  } else {
+                    x.className = "menu";
+                  }
+                }
+            </script>
+        </div>
+    </nav>
+
+    <div class="content">    
+        <div class="ct_container">
+            <div class="row main">
+                <div class="container">
+                    <div class="text-center bounce animated" style="margin-top: 0px;">
+                        <h1 class="main delay" style="display: inline-block">BOT</h1>
+                        <h1 style="display: inline-block">NET</h1>
+                    </div>
+                    <div class="text-center bounce animated delay1">
+                        <h1 style="display: inline-block">as a</h1>
+                    </div>
+                    <div class="text-center bounce animated delay2">
+                        <h1 class="main" style="display: inline-block">SERVICE</h1>
+                    </div>
+                    <button class="btn-default" type="button" onclick = "location.href = 'baas'">Read More</button>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 col-lg-6 col-xl-5 offset-xl-1" style="padding: 100px 15px;">
+                    <h2>Free Plan</h2>
+                    <p>It has basic features and is a great plan to experience our new system.<br><br>[+] File execute<br>[+] File execute and add to startup</p>
+                </div>
+                
+                <div class="col-md-5 col-lg-5 offset-lg-1 offset-xl-0" style="text-align: right;">
+                    <i class="icon ion-network" style="color: rgb(255,255,255); font-size: 400px;"></i>
+                </div>
+            </div>
+    
+            <div class="row">
+                <div class="col-12 col-lg-6 col-xl-5 offset-xl-1" style="padding: 100px 15px;">
+                    <h2>VIP Plan</h2>
+                    <p>You can experience all of our features and use powerful Ddos and useful features.<br><br>[+] 5 Layer 7 methods and 2 Layer 4 methods<br>[+] All of Layer 7 methods support SSL<br>[+] AV Bypass method Included</p>
+                </div>
+                
+                <div class="col-md-5 col-lg-5 offset-lg-1 offset-xl-0" style="text-align: right;">
+                    <i class="icon ion-network" style="color: rgb(255,255,255); font-size: 400px;"></i>
+                </div>
+            </div>
+        </div>
+        
+        <!-- <div class="d-none d-md-block iphone-mockup"><img class="device" src="assets/img/ddos.png"></div> -->
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
+    <script src="assets/js/script.min.js"></script>
+</body>
+
+</html>
